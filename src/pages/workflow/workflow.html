@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      <div class="title-tabs">
+        <span class="title-tab" [ngClass]="{'active':listStatus.todo}" (click)="fetchTodoList()">待办</span>
+        <span class="title-tab" [ngClass]="{'active':listStatus.done}" (click)="fetchDoneList()">已办</span>
+        <span class="title-tab" [ngClass]="{'active':listStatus.mine}" (click)="fetchMineList()">我的</span>
+      </div>
+    </ion-title>
+
+    <ion-buttons right>
+      <button class="font-17-im" ion-button icon-only (click)="opera()">{{isOpera?'取消':'操作'}}</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="content-bgcolor">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="下拉刷新"
+      refreshingSpinner="bubbles"
+      refreshingText="正在刷新数据...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item-sliding>
+      <ion-item no-padding no-margin class="parent-item">
+        <ion-item class="item-head">
+          <ion-grid no-padding>
+            <div ion-row>
+              <ion-col col-1 class="checkbox-col" *ngIf="isOpera">
+                <img src="assets/imgs/unselect@3x.png" class="checkbox-img"/>
+              </ion-col>
+              <ion-col ngClass="{isOpera:'col-11',!isOpera:'col-12'}">
+                <img src="assets/imgs/manDefault.jpg" class="avatar">
+                <div class="item-head-text" padding-right>
+                  <h2 class="color-theme">休假申请审批<span float-right class="font-14 doing">运行中</span></h2>
+                  <p class="color-gray">成志唯</p>
+                </div>
+              </ion-col>
+            </div>
+          </ion-grid>
+        </ion-item>
+        <ion-item>
+          <ion-grid no-padding>
+            <ion-row>
+              <ion-col col-3 class="color-gray">当前节点</ion-col>
+              <ion-col col-9 class="color-darkgrey">申请者上级</ion-col>
+            </ion-row>
+            <ion-row padding-top>
+              <ion-col col-3 class="color-gray">申请时间</ion-col>
+              <ion-col col-9 class="color-darkgrey">2017-06-05 11:57:19</ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-icon name="ios-arrow-forward" class="color-secondgray" item-end></ion-icon>
+        </ion-item>
+      </ion-item>
+
+      <ion-item-options side="right" icon-left icon-start>
+        <div class="border-left">
+          <button ion-button><img src="assets/imgs/approval-1@3x.png" padding-right />同意</button>
+          <button ion-button><img src="assets/imgs/refuse-1@3x.png" padding-right />拒绝</button>
+        </div>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list>
+    <ion-item-sliding>
+      <ion-item no-padding no-margin class="parent-item">
+        <ion-item class="item-head">
+          <ion-grid no-padding>
+            <div ion-row>
+              <ion-col col-1 class="checkbox-col" *ngIf="isOpera">
+                <img src="assets/imgs/select@3x.png" class="checkbox-img"/>
+              </ion-col>
+              <ion-col ngClass="{isOpera:'col-11',!isOpera:'col-12'}">
+                <img src="assets/imgs/manDefault.jpg" class="avatar">
+                <div class="item-head-text" padding-right>
+                  <h2 class="color-theme">休假申请审批<span float-right class="font-14 doing">运行中</span></h2>
+                  <p class="color-gray">成志唯</p>
+                </div>
+              </ion-col>
+            </div>
+          </ion-grid>
+        </ion-item>
+        <ion-item>
+          <ion-grid no-padding>
+            <ion-row>
+              <ion-col col-3 class="color-gray">当前节点</ion-col>
+              <ion-col col-9 class="color-darkgrey">申请者上级</ion-col>
+            </ion-row>
+            <ion-row padding-top>
+              <ion-col col-3 class="color-gray">申请时间</ion-col>
+              <ion-col col-9 class="color-darkgrey">2017-06-05 11:57:19</ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-icon name="ios-arrow-forward" class="color-secondgray" item-end></ion-icon>
+        </ion-item>
+      </ion-item>
+
+      <ion-item-options side="right" icon-left icon-start>
+        <div class="border-left">
+          <button ion-button><img src="assets/imgs/approval-1@3x.png" padding-right />同意</button>
+          <button ion-button><img src="assets/imgs/refuse-1@3x.png" padding-right />拒绝</button>
+        </div>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="加载更多数据...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+<ion-footer *ngIf="!isOpera">
+  <ion-toolbar no-padding>
+    <button ion-button clear full class="foot-bar-btn" no-margin (click)="toFilter()"><img src="assets/imgs/screen@3x.png" /> 筛选</button>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-footer *ngIf="isOpera">
+  <ion-toolbar class="select-all-bar" no-padding >
+    <button ion-button clear class="foot-bar-btn" no-margin (click)="selectAll()"><img src="assets/imgs/unselect@3x.png" class="checkbox-img"/>全选</button>
+    <button ion-button clear class="foot-bar-btn color-danger" no-margin (click)="refuse()"> 拒绝</button>
+    <button ion-button clear class="foot-bar-btn color-secondary" no-margin (click)="accept()"> 通过</button>
+  </ion-toolbar>
+</ion-footer>

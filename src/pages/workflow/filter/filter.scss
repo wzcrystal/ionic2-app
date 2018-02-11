@@ -1,0 +1,39 @@
+page-filter{
+  .font-16-im{
+    font-size: 1.6rem !important;
+  }
+  .color-gray-im{
+    color: color($colors,gray) !important;
+  }
+  .font-blod{
+    font-weight: 600;
+  }
+
+  /*列表*/
+  .filter-list-type > .item-block:last-child, .filter-list-radio > .item-block:last-child{
+    border-bottom: 0;
+  }
+  .filter-list-radio > .item-block:last-child .item-inner, .filter-list-radio > .item-wrapper:last-child .item-block .item-inner {
+    border-bottom: 0.55px solid #EEE;
+  }
+  .list-ios > .item-block:first-child, .list-ios .item-block .item-inner {
+    border-color:#EEE;
+  }
+  .item-ios.item-block .item-inner{
+    padding-right: 0;
+  }
+  .label-ios{
+    margin-left:5px;
+    margin-right:5px;
+  }
+  .bg-transparent{
+    background-color: transparent;
+  }
+  .grid,.row{
+    height:100%;
+  }
+  .bgcolor-fff{
+    background-color: #fff;
+  }
+}
+

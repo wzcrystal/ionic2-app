@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button class="font-16-im color-gray-im" ion-button (click)="dismiss()">取消</button>
+    </ion-buttons>
+    <ion-title>
+      <ion-buttons>
+        <button class="font-16-im color-gray-im" ion-button>清空筛选</button>
+      </ion-buttons>
+    </ion-title>
+
+    <ion-buttons right>
+      <button class="font-16-im" ion-button (click)="dismiss()">确定</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="content-bgcolor">
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col col-3>
+        <ion-list class="filter-list-type">
+          <ion-item  class="" no-padding text-center
+                     *ngFor="let type of filterType;let index = index"
+                     [ngClass]="{true:'font-blod',false:'bg-transparent'}[index==filterTypeChoseId]"
+                     (click)="choseType(type.id)">{{type.name}}</ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col col-9 class="bgcolor-fff">
+        <ion-list class="filter-list-radio" radio-group no-padding>
+          <ion-item>
+            <ion-label>Go</ion-label>
+            <ion-radio checked="true" value="go"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Rust</ion-label>
+            <ion-radio value="rust"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+

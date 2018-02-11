@@ -1,0 +1,151 @@
+page-home {
+  /*标题*/
+  .title-tabs{
+    display: flex;
+    justify-content: space-between;
+    max-width: 200px;
+  }
+  .toolbar-title,.title-tabs, .title-tab{
+     height: 100%;
+  }
+  .title-tab{
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    &.active{
+      color:color($colors,primary);
+      border-bottom: 2px solid color($colors,primary);
+    }
+  }
+  /*内容*/
+  .has-refresher > .scroll-content{
+    border-top:0;
+  }
+
+  /*头像处理与复选*/
+  .item-head{
+    .checkbox-col{
+      display: flex;
+      align-items: center;
+    }
+    .checkbox-img{
+      width:16px;
+    }
+    .avatar{
+      width:40px;
+      height:40px;
+      border-radius: 50%;
+    }
+    .item-head-text{
+      position: absolute;
+      left:50px;
+      right:0;
+      top:0px;
+      bottom:0px;
+    }
+  }
+
+  /*列表*/
+  .list{
+    &:first-child{
+      margin-top:10px;
+    }
+  }
+  .item-ios h2 {
+    font-size: 1.6rem;
+  }
+  .item-ios.item-block .item-inner {
+    padding-right: 0px;
+  }
+  .label-ios {
+    margin-right: 0;
+  }
+  .item{
+    &:first-child{
+      border-top:0 !important;
+    }
+    &:last-child{
+      border-bottom: 0 !important;
+    }
+  }
+  .parent-item>.item-inner>.input-wrapper>.label-ios {
+    margin-top:0;
+    margin-bottom: 0;
+  }
+
+  /*左滑按钮*/
+  .list-ios ion-item-options{
+    border:0;
+  }
+  .list-ios ion-item-options .button{
+    min-width:100px;
+    min-height: 50%;
+    height:50%;
+    display: block;
+    background-color: transparent;
+    &:first-child{
+      color:#48D2A0;
+    }
+    &:last-child{
+      color:#F96F68;
+    }
+    img{
+      width:30px;
+    }
+  }
+  .border-left{
+    border-left: 1px solid color($colors,borderColor);
+  }
+
+  /*已办状态*/
+  .font-14{
+    font-size: 1.4rem;
+  }
+  .doing{
+    color:#F99D32;
+  }
+  .checkbox1{
+    visibility: hidden;
+    &:after{
+      width:24px;
+      height:24px;
+      background-image: url("../assets/imgs/unselect@3x.png");
+    }
+  }
+
+  /*底部按钮*/
+  .foot-bar-btn{
+    img{
+      width:20px;
+      margin-right:10px;
+    }
+    font-size: 1.6rem;
+  }
+  .select-all-bar .toolbar-content-ios{
+    display: flex;
+    justify-content: space-between;
+  }
+  .color-secondary{
+    color: color($colors,secondary) !important;
+  }
+  .color-danger{
+    color: color($colors,danger) !important;
+  }
+}
+
+/*模态框*/
+.wf-modal{
+  ion-backdrop {
+    visibility: visible !important;
+  }
+  .modal-wrapper {
+    z-index: 10;
+    height: 50%;
+    contain: strict;
+    position: absolute;
+    bottom: 0;
+    top: 50%;
+    left: 0;
+    right: 0;
+  }
+}
