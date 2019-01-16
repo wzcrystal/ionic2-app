@@ -6,7 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { LocalStorage } from '../providers/local-storage/local-storage';
+import { LocalStorage } from '../service/local-storage.service';
+import { LocalStorageKeys } from '../constant/constant';
 import { ENV } from '@app/env';
 
 @Injectable()
@@ -15,10 +16,10 @@ export class HttpFilter implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let cloneReq = null;
-    if(this.local.get('token')){
+    if(this.local.get(LocalStorageKeys.TOKEN)){
       cloneReq = req.clone({
         setHeaders: {
-          Authorization: 'Bearer ' + this.local.get('token'),
+          Authorization: 'Bearer ' + this.local.get(LocalStorageKeys.TOKEN),
           appVersion: ENV.version.currentVersion + '.' + ENV.version.currentSubVersion,
           'Content-Type': 'application/json;charset=UTF-8',
           'X-Requested-With': 'XMLHttpRequest',
@@ -66,7 +67,7 @@ export class HttpFilter implements HttpInterceptor {
           }
           break;
         case 401:
-          this.local.remove('token');
+          this.local.remove(LocalStorageKeys.TOKEN);
           res['error']['message']='请重新登录！';
           break;
         default:

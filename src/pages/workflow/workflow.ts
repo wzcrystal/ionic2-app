@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {NavController, ModalController, Platform} from 'ionic-angular';
 
 import { FilterPage } from './filter/filter';
-import {UtilService} from "../../scripts/service/util.service";
+import { LoadingService } from "../../scripts/service/loading.service";
 
 declare let cordova;
 declare let HandBridge;
@@ -14,7 +14,7 @@ declare let HandBridge;
 export class WorkflowPage {
 
   constructor(private platform: Platform, public navCtrl: NavController,
-              public modalCtrl: ModalController, public util: UtilService) {
+              public modalCtrl: ModalController, public util: LoadingService) {
     //util.hideLoading();
   }
 

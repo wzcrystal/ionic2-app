@@ -5,9 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 
-import { LocalStorage } from '../scripts/providers/local-storage/local-storage';
+import { CommonService } from '../scripts/service/common.service';
+import { LocalStorage } from '../scripts/service/local-storage.service';
 import { HttpFilter } from '../scripts/filter/http.filter';
-import { UtilService } from '../scripts/service/util.service';
+import { LoadingService } from '../scripts/service/loading.service';
 
 import { MyApp } from './app.component';
 import { WorkflowModule } from '../pages/workflow/workflow.module';
@@ -34,8 +35,9 @@ import { WorkflowModule } from '../pages/workflow/workflow.module';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: HTTP_INTERCEPTORS, useClass: HttpFilter, multi: true},
+    CommonService,
     LocalStorage,
-    UtilService
+    LoadingService
   ]
 })
 export class AppModule {}

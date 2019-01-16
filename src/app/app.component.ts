@@ -5,14 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { ENV } from '@app/env';
 import { WorkflowService } from '../pages/workflow/workflow.service';
-import { LocalStorage } from '../scripts/providers/local-storage/local-storage';
-import { UtilService } from '../scripts/service/util.service';
+import { LocalStorage } from '../scripts/service/local-storage.service';
+import { LoadingService } from '../scripts/service/loading.service';
 
 import { WorkflowPage } from '../pages/workflow/workflow';
+import { LocalStorageKeys } from "../scripts/constant/constant";
 
 //调用cordova插件时定义变量，避免代码检查时出错
-/*declare let cordova;
-declare let HandBridge;*/
+declare let cordova;
+declare let HandBridge;
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,15 +21,14 @@ export class MyApp {
   rootPage:any = WorkflowPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
-              workflowService: WorkflowService, local: LocalStorage, util: UtilService) {
+              workflowService: WorkflowService, local: LocalStorage, util: LoadingService) {
     //子应用写法
-    /*
-    let _this = this;
+    /*let _this = this;
     util.showLoading();
     (<any>window).ACallBack=function (message) {
       var obj=JSON.parse(message);
-      local.set('token',obj.token);
-      local.set('userId',obj.LOGINEXTRA.userId);
+      local.set(LocalStorageKeys.TOKEN,obj.token);
+      local.set(LocalStorageKeys.USERID,obj.LOGINEXTRA.userId);
       _this.rootPage = WorkflowPage;
     };
 
@@ -69,13 +69,12 @@ export class MyApp {
     workflowService.login(url).subscribe(
       data => {
         console.log(data);
-        local.set('token',data['access_token']);
-        local.set('userId',data['userId']);
+        local.set(LocalStorageKeys.TOKEN,data['access_token']);
+        local.set(LocalStorageKeys.USERID,data['userId']);
         _this.rootPage = WorkflowPage;
       },
       err => {console.log(err);}
-    )
-    */
+    )*/
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
